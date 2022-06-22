@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>Zadanie 3 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+        </head>
+
+        <script>
+            let licznik = 0;
+
+            function moja_Funkcja(){
+                let mojaTablica = ['Baśka', 'Ania', 'Kaśka', 'Monika', 'Patrycja', 'Aneta'];
+
+                mojaTablica.forEach(function(el, i){ document.tester.okno.value = document.tester.okno.value + 'Imie numer ' + i + ': '  + el + ";" + "\r\n"});
+            }
+
+            function resetuj(){
+                document.tester.okno.value = "";
+            }
+        </script>
+
+        <body style="text-align: center;">
+            <h2>Tester</h2>
+            <form  name="tester", onsubmit="0">
+                <textarea name="okno" cols="50" rows="10"></textarea>
+                <br>
+                <input type="button" value="Wykonaj" onclick="moja_Funkcja()">
+                <input type="button" value="Resetuj" onclick="resetuj()">
+            </form>
+        </body>
+    </html>

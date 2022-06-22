@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad5 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+                       
+            <SCRIPT language="JavaScript">
+                function Tabliczka(){
+                    let spacja = " "
+                    let spacje = "  "
+                    let i, j, x =0;
+                    let wielkoscTablicy = 11;
+                    document.write("<center><table border='69px'>");
+                    for(i=1;i<wielkoscTablicy; i++){
+                        document.write("<tr style='height:40px'>");
+                        for(j=1;j<wielkoscTablicy;j++){
+                            x = i * j;
+                            document.write("<td style='width:40px'><center><font size='4'>" + x + "</center></font></td>");
+                        }
+                        document.writeln("</tr>");
+                    } 
+                    document.write("</table></center>");
+                }
+
+
+            </SCRIPT>
+        </head>
+
+        <body >
+
+            <div id="box" style="background-color: blueviolet; text-align: center;  border-radius: 20px; width: max-content; padding: 15px; margin-left: 500px; font-weight: 900; color: blanchedalmond;" >
+                
+               <script>Tabliczka()</script> 
+            </div>
+            
+        </body>
+
+    </html>

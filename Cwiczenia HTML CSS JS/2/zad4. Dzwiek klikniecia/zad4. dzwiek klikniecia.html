@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #opo {
+                background-color: rgb(98, 108, 201);
+                text-align: center;
+                margin: 5px 40%;
+                border-radius: 15px;
+            }
+            #button1 {
+                background-color: rgb(166, 166, 202);
+                border-radius: 7px;   
+            }
+            #button1:hover {
+                background-color: rgb(119, 119, 172);
+            }
+        </style>
+    </head>
+    <body>
+        <form enctype="text/plain">
+            <div id="opo">
+                <h2>Kliknij gdziekolwiek by strzelić</h2>           
+            </div>
+
+        </form>
+
+        <script type="text/javascript" charset="utf-8">
+            
+            const tabaudio = [ new Audio('lasergun.mp3'), new Audio('wystrzal.mp3'), new Audio('strzal.mp3'), new Audio('strzal1.mp3'), new Audio('strzal2.mp3'), new Audio('strzal3.mp3')];
+            function graj(){
+                let i = Math.floor(Math.random()*tabaudio.length);
+                tabaudio[i].play();
+            }
+
+            document.onclick = function(e){
+                graj();
+            }
+        </script>
+    </body>  
+</html>

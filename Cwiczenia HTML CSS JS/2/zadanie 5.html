@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <canvas id="moja_kanwa" width="1300" height="600">fd</canvas>
+
+        <script type="text/javascript" charset="utf-8">
+            var c = document.getElementById('moja_kanwa').getContext('2d');
+            
+            document.onclick = function(e){
+                e = e || window.event;
+                var pX = 0;
+                var pY = 0;
+                if(e.pageX || e.pageY){
+                    pX = e.pageX -7;
+                    pY = e.pageY -7;
+                } else if (e.clientX || e.clientY){
+                    pX = e.clientX + document.body.scrollLeft;
+                    pY = e.clientY + document.body.scrollTop;
+                }
+                rysuj1(pX,pY);  
+            };
+
+            function LosujKolor(){
+                let wylosowanyKolor = Math.floor((Math.random() * 9 ));
+                switch(wylosowanyKolor){
+                    case 0: {c.strokeStyle = "rgb(255,0,0)"; break ;}
+                    case 1: {c.strokeStyle = "rgb(0,255,0)"; break ;}
+                    case 2: {c.strokeStyle = "rgb(0,0,255)"; break ;}
+                    case 3: {c.strokeStyle = "rgb(100,100,100)"; break ;}
+                    case 4: {c.strokeStyle = "rgb(255,102,255)"; break ;}
+                    case 5: {c.strokeStyle = "rgb(102,255,255)"; break ;}
+                    case 6: {c.strokeStyle = "rgb(255,153,51)"; break ;}
+                    case 7: {c.strokeStyle = "rgb(153,0,153)"; break ;}
+                    case 8: {c.strokeStyle = "rgb(224,224,224)"; break ;}
+                }
+            }
+
+            function rysuj1(xx,yy){
+                var dzwiek =  new Audio('rings.wav');
+                dzwiek.play();
+                LosujKolor();
+                c.lineWidth =5;
+                c.beginPath()
+                c.moveTo(xx-10,yy-10);
+                c.lineTo(xx+10,yy+10);
+                c.moveTo(xx-10,yy+10);
+                c.lineTo(xx+10,yy-10);
+                c.stroke();
+                c.closePath()
+            }
+
+
+            </script>
+    </body>  
+</html>

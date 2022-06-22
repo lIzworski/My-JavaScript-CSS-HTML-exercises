@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <title>Zad2. Pokaz slajdów z guzikami - Lucjan Izworski</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        #guziki {
+            text-align: center;
+            background-size: 20px;
+            
+        }
+        #okno { text-align: center; position: static; }
+        .slajdy { display: none; text-align: center;}
+    </style>
+    <body>
+        <div id="guziki">
+
+            <input type="button" value="Poprzednie" onclick="Poprzednie()">
+            <input type="button" value="Następne"  onclick="Nastepne()">
+        </div>
+        <div id="okno" style="max-width: 200px; max-height: 200px;">
+            <img class="slajdy" src="obraz/0.png" width="100%" height="100% ">
+            <img class="slajdy" src="obraz/1.png" width="100%" height="100% ">
+            <img class="slajdy" src="obraz/2.png" width="100%" height="100% ">
+            <img class="slajdy" src="obraz/3.png" width="100%" height="100% "> 
+        </div> 
+
+        
+
+        <script>
+            let myIndex = 0;
+            let x
+            
+            function UniewidocznijZdjecia(){
+                let i;
+                x = document.getElementsByClassName('slajdy');
+                for(i = 0; i < x.length; i++){
+                    x[i].style.display = 'none';
+                }
+                
+            }
+            function Nastepne(){
+                UniewidocznijZdjecia();
+                myIndex++;
+                if(myIndex > x.length-1){
+                    myIndex = 0;
+                }
+                x[myIndex].style.display = 'block';
+            }
+            function Poprzednie(){
+                UniewidocznijZdjecia();
+                myIndex--;
+                if(myIndex < 0){
+                    myIndex = x.length-1;
+                }
+                x[myIndex].style.display = "block";
+            }
+
+            
+        </script>
+
+
+    </body>
+</html>

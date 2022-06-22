@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad8b -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+
+            <SCRIPT language="JavaScript">
+                let sekundy = 1;
+                let czasdziala = true;
+                
+
+                function uruchomZegar(){
+                    if(czasdziala == true){
+                        odliczanieStart()
+                    }                  
+                }
+
+                function czasStop(){
+                    if(czasdziala == true){
+                        czasdziala = false;
+                    }
+                }
+
+                function odliczanieStart(){
+                    let czas = document.getElementById("zegar");
+                    czas.innerHTML = sekundy;
+                    if(czasdziala == true){
+                        sekundy = sekundy + 1;
+                        let zegarek = setTimeout(uruchomZegar, 1000)
+                    }
+                    else if(czasdziala == false){
+                        czasdziala = true;
+                        uruchomZegar();
+                    }
+                }
+                function resetuuuj(){        
+                    let czas = document.getElementById("zegar");
+                        czasdziala = false;
+                        sekundy = 0;
+                        czas.innerHTML = sekundy;
+                        clearTimeout(zegarek)              
+                }
+            </SCRIPT>
+        </head>               
+        <body >
+
+            <div style="background-color: blueviolet; text-align: center; ">    
+                       
+                <div id="zegar" style="font-weight: 700; text-align: center;">
+                    
+                </div>
+                    <input type="button" size="7" value="Start" id="resetuj" style="border-radius: 5px;" onclick="odliczanieStart()">
+                    <input type="button" size="7" value="Stop" id="resetuj" style="border-radius: 5px;" onclick="czasStop()"> 
+                    <input type="button" size="7" value="Resetuj czas" id="resetuj" style="border-radius: 5px;" onclick="resetuuuj()"> 
+                
+            </div>
+
+        </body>
+
+    </html>

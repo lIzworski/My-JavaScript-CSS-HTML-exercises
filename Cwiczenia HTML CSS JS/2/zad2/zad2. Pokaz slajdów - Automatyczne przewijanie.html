@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <title>zad2 - automatycznie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <style>
+        .mySlides {display:none;}
+    </style>
+    <body>
+
+        <div class="okno" style="max-width:200px">
+            <img class="mySlides" src="obraz/0.png" style="width:100%">
+            <img class="mySlides" src="obraz/1.png" style="width:100%">
+            <img class="mySlides" src="obraz/2.png" style="width:100%">
+            <img class="mySlides" src="obraz/3.png" style="width:100%">
+        </div>
+
+        <script>
+            var myIndex = 0;
+            Wyswietl();
+
+            function Wyswietl() {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";  
+                }
+                myIndex++;
+                if (myIndex > x.length) {myIndex = 1}    
+                x[myIndex-1].style.display = "block";  
+                setTimeout(Wyswietl, 1000); 
+            }
+        </script>
+
+    </body>
+</html> 

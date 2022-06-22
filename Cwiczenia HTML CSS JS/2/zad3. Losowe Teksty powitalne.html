@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad3 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+            <style>
+                div {
+                    background-color: rgb(226, 189, 144);
+                    text-align: center;
+                    margin: auto;
+                    border-radius: 15px;
+                    margin: 0px 35%;
+                    padding: 10px 0px;
+                }
+                h2 {
+                    color: rgb(95, 36, 1);
+                }
+                #guzik1 {
+                    border-radius: 5px;
+                }
+                #guzik1:hover {
+                    background-color: rgb(207, 176, 142);
+                }
+                textarea {
+                    text-align: center;
+                    font-weight: 700;
+                }
+            </style>
+
+            <SCRIPT language="JavaScript">
+                let poprzedniaIteracja;
+                function nastepnyJezyk(){
+                    let iteracja = Math.floor((Math.random() * 13) );
+                    if(poprzedniaIteracja == iteracja){
+                        if(iteracja < 12){
+                            iteracja++;
+                        }
+                        else{
+                            iteracja--;
+                        }
+                    }
+                    let przywitania = ["Polski - Dzień Dobry", "Hiszpański - Buenos dias", "Norweski - God morgen", "Słowacki - Dobre rano", "Słoweński - Dobre jutro","Węgierski - Jó reffelt","Białoruski - Dobry dzen","Francuski - Bonjour","Hawajski - Aloha","Hebrajski - Boker tow","Japoński - konnichi wa","Turecki - günaydın","Litewski -  laba diena"];
+                    let jezyk = document.getElementById('Dobry');
+                    jezyk.innerHTML = przywitania[iteracja]  
+                    poprzedniaIteracja = iteracja;
+                }
+                       
+            </SCRIPT>
+        </head>               
+        <body >
+            <div>
+                <h2>"Dzień Dobry" w różnych językach</h2>
+                <form name="formularz"onsubmit="0" id="napis" >
+                    <textarea name="okno" id="Dobry" cols="30" rows="2"></textarea><br>
+                    <input type="button" size="7" value="Następny" id="guzik1" onclick="nastepnyJezyk()"> 
+                </form> 
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad6 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+
+            <SCRIPT language="JavaScript">
+                function fewSecondsLeyter(iloscSekund){
+                    let czas = iloscSekund * 1000;
+                    setTimeout(Hello, czas);
+                }
+
+                function Hello(){
+                    let napis = document.getElementById("tutu");
+                    napis.innerHTML = " Witaj";
+                }
+
+            </SCRIPT>
+        </head>               
+        <body >
+            <p id="tutu">Hej</p> 
+                 
+            <script>fewSecondsLeyter(5)</script>
+           
+
+        </body>
+
+    </html>

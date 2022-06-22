@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <title>zadanie6.4 Animacja autka</title>
+    <meta charset="utf-8">
+</html>
+<style>
+
+</style>
+<body>
+    <canvas id="PanSamochodzik" width="1200" height="750" style="border: 2px solid #232323;">Pan Samochodzik animacja nie działa</canvas>
+    <script>
+        var c = document.getElementById("PanSamochodzik").getContext('2d');
+        let tmpX; 
+        var image = new Image(250,250);
+        var image2 =  new Image(250,250);
+        var kierunek = true;
+        let obraz = new Image(250,250);
+        function obruc(){
+            if (kierunek == true){
+                obraz = image;
+            }
+            else {
+                obraz = image2;
+            }
+        }
+
+        obruc();
+        image.src ="pliki/car.png";
+        image2.src ="pliki/car2.png";
+        obraz.onload = function(){
+            setInterval('rysuj()',2);
+        };
+        let imX = 0;
+        let imY = 300;
+
+        let stepX =1;
+              
+        function rysuj(){
+            c.clearRect(0,0,1200,750);
+            
+            if(imX<0 || imX > 1200-275){ 
+                
+                stepX = -stepX ;
+
+                if(kierunek == true){
+                    kierunek = false;
+                    obruc();
+                }
+                else if(kierunek == false){
+                    kierunek = true;
+                    obruc();
+
+                }
+                obruc();
+            }
+            
+            imX += stepX;
+
+            c.drawImage(obraz,imX, imY);
+        }
+    </script>
+</body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>Zadanie 4 - Lucjan Izworski</title>
+            <meta http-equiv="Content-Type" content="text/html;" charset="utf-8">   
+        </head>
+
+    
+        <body style="text-align: center; background-color: bisque;">
+            <p>
+              Ten napis <strong id='wybrany' style="color: red;" >zawiera pogórbiony tekst</strong>, a dalej znów normalny
+            </p>
+
+            <form name="formularz" onsubmit="0">
+                <input type="button" size="7" value="Zielony " id="guzik1"> <br>
+                <input type="button" size="7" value="Czerwony " id="guzik2"> <br>
+                <input type="button" size="7" value="Niebieski " id="guzik3"> <br>
+                <input type="button" size="7" value="Różowy " id="guzik4"> <br>
+            </form>
+            <script language="JavaScript">
+
+                let element = document.getElementById('wybrany');
+
+                function dajKolorZielony(){
+                    element.style.color = 'green';
+                }
+                function dajKolorCzerwony(){
+                    element.style.color = 'red';
+                }
+                function dajKolorNiebieski(){
+                    element.style.color = 'blue';
+                }
+                function dajKolorRozowy(){
+                    element.style.color = 'pink';
+                }
+
+                guzik1.addEventListener('click',dajKolorZielony);
+                guzik2.addEventListener('click', dajKolorCzerwony);
+                guzik3.addEventListener('click', dajKolorNiebieski);
+                guzik4.addEventListener('click',dajKolorRozowy);
+            </script>
+
+    </body>
+</html>

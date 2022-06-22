@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad7 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+
+            <SCRIPT language="JavaScript">
+                
+                let iteracja = 0;
+                 
+
+                function nastepnyJezyk(){
+                    let przywitania = ["Polski - Dzień Dobry", "Hiszpański - Buenos dias", "Norweski - God morgen", "Słowacki - Dobre rano", "Słoweński - Dobre jutro","Węgierski - Jó reffelt"];
+                    let jezyk = document.getElementById('Dobry');
+                    jezyk.innerHTML = przywitania[iteracja]
+                    if(iteracja > przywitania.length-2){
+                        iteracja = 0;
+                    }
+                    else {
+                        iteracja += 1;
+                    }
+                    
+                }
+               
+                
+            </SCRIPT>
+        </head>               
+        <body style="text-align: justify;" >
+            <div style="border: 2 indigo; border-radius: 15px; background-color: rgb(180, 180, 206); max-width: 400px; text-align: center; margin: 20px 20px; padding: 20px;">
+                <h2>Dzień Dobry w różnych językach</h2>
+                <p id="Dobry"; style="color: brown; font-weight: 700;">  -  </p>
+
+                <form name="formularz"onsubmit="0" >
+                    <input type="button" size="7" value="Następny" id="guzik1" onclick="nastepnyJezyk()"> 
+                </form> 
+            </div>
+
+
+        </body>
+
+    </html>

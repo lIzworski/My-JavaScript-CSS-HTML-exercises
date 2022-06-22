@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>Zadanie 9 -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+        </head>
+        <script>
+
+            let imgArray = new Array();
+
+            imgArray[0] =  new Image();
+            imgArray[0].src = 'img/a1.jpg';
+            imgArray[1] =  new Image();
+            imgArray[1].src = 'img/a2.jpg';
+            imgArray[2] =  new Image();
+            imgArray[2].src = 'img/a3.jpg';
+            imgArray[3] =  new Image();
+            imgArray[3].src = 'img/a4.jpg';
+            imgArray[4] =  new Image();
+            imgArray[4].src = 'img/a5.jpg';
+            imgArray[5] =  new Image();
+            imgArray[5].src = 'img/a6.jpg';
+
+            function nextImage(){
+                var img = document.getElementById("Ekran");
+                for(var i = 0; i < imgArray.length;i++){
+                    if(imgArray[i].src == img.src){
+                        if(i === imgArray.length){
+                            document.getElementById("Ekran").src = imgArray[0].src;
+                            break;
+                        }
+                        document.getElementById("Ekran").src = imgArray[i+1].src;
+                        break;
+                    }
+                }
+            }
+        </script>
+        <body style="text-align: center;">
+            <contener>
+                <div id="Ekran">
+                    <script>wyswietlZdjecia()</script>
+                </div>
+                <nav>
+                    
+                </nav>
+            </contener>
+        </body>
+    </html>

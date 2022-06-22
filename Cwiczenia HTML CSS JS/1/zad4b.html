@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>Zadanie 4 b - Lucjan Izworski</title>
+            <meta charset="utf-8">
+        </head>
+        <body>
+            Tekst zwykły
+            <div id="kursywa" style="font-style: italic;">
+            tekst kursywą
+            <div id="surowy" style="font-style: normal;"></div>
+            Dalej tekst znowu kursywą
+            </div>
+            <br>
+            <input type="button" id="przyc1" value="sformatuj">
+            <input type="button" id="przyc2" value="usuń format">
+            <br>
+
+            <SCRIPT language="JavaScript">
+                function zmienStylowanie(){
+                    let div1 = document.getElementById('surowy');
+
+                    div1.style.backgroundColor = '#33CCCC';
+					div1.style.borderColor = '#336699';
+					div1.style.borderWidth = '1px';
+					div1.style.borderStyle = 'solid';
+					div1.style.fontFamily = 'Tahoma, Arial';
+					div1.style.lineHeight = '100px';
+					div1.style.fontSize = '13px';
+					div1.style.color = '#CCFFFF';
+					div1.style.width = '300px';
+					div1.style.height = '100px';
+					div1.style.textAlign = 'center';
+
+                    div1.innerHTML = "Zostałem sformatowany przez JS"    
+                }
+                function usunStylowanie(){
+                    let div = document.getElementById('surowy');
+                    div.style="font-style: normal;";
+                    //div.style='reset';
+                    div.innerHTML = "tekst nie sformatowany"
+                }
+                document.getElementById('przyc1').onclick = zmienStylowanie;
+                document.getElementById('przyc2').onclick = usunStylowanie;
+            </SCRIPT>
+        </body>
+
+    </html>

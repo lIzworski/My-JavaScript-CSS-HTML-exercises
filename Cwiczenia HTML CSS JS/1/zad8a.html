@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <title>zad8a -  Lucjan Izworski</title>
+            <meta charset="utf-8">
+
+            <SCRIPT language="JavaScript">
+                let sekundy = 1;
+                function odliczanie()
+                    {
+                        
+                        let czas = document.getElementById("zegar");
+                        czas.innerHTML = sekundy;
+                        sekundy = sekundy + 1;
+                        setTimeout(odliczanie, 1000)
+                    }
+                
+            </SCRIPT>
+        </head>               
+        <body >
+
+            <div style="background-color: blueviolet; text-align: center;">    
+                Czas od włączenia strony       
+                <div id="zegar" style="font-weight: 700; text-align: center;">
+                    
+                       <script>odliczanie()</script>
+                </div>
+            </div>
+
+        </body>
+
+    </html>

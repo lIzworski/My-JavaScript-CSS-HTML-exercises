@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--
+ ! Proste rysowanie
+-->
+<html>
+  <head>
+    <title>Polowanie na kaczki</title>
+  </head>
+  
+  <body>
+    <canvas id="canvas"  style="border:1px solid #d3d3d3;">
+       Treść zastępcza
+    </canvas>
+	 
+     <script type="text/javascript" charset="utf-8">
+
+		var width = window.innerWidth,
+			height = window.innerHeight,
+			ratio = window.devicePixelRatio;
+		var canvas = document.getElementById("canvas"),
+		context = canvas.getContext("2d");
+
+		canvas.width = width * ratio;
+		canvas.height = height * ratio;
+		canvas.style.width = width + "px";
+		canvas.style.height = height + "px";
+		context.scale(ratio, ratio);
+		let iloscKaczek= 0;
+		let iloscstrzalow = 6;
+		var image = new Image(); 
+		var kaczka = new Image();
+		kaczka.src = 'obrazki/Kaczka-Sheet.png';
+		var kaczka2 = new Image();
+		kaczka2.src = 'obrazki/Kaczka2-Sheet.png';
+		var kaczka3 = new Image();
+		kaczka3.src = 'obrazki/Kaczka-smierc-Sheet.png';
+		var kaczka4 = new Image();
+		kaczka4.src = 'obrazki/Kaczka-Sheet-smierc2.png';
+		image = kaczka2;
+		let przegrales = false;
+		var kierunek = true;
+		function losujY(){
+			let Y = Math.floor(Math.random()*599)
+			return Y;
+		}
+		function losujKierunek(){
+			let kier = Math.floor(Math.random()*2)
+			return kier;
+		}
+
+		function kaczkaPowraca(){
+			let duck = new Audio("audio/duck.mp3")
+			duck.play();
+			let way = losujKierunek();
+			if(way = 0){
+				kierunek = true;
+			}
+			else{
+				kierunek = true;
+			}
+			if(kierunek == false){
+				imX = width;
+				imY = losujY();
+				image = kaczka;
+			}
+			else{
+				imX = 0
+				imY = losujY();
+				image = kaczka2;
+			}
+			jakSzybka();
+		}
+		function obruc(){
+            if (kierunek == false){
+                image = kaczka;
+            }
+            else {
+                image = kaczka2;
+            }
+        }
+		var step = 0;
+		//poczatkowe polozenie obrazka
+		var imX = 0;
+		var imY = 0;
+		//o tyle będzie przesuwał sie obrazek
+		var stepX = 3;
+		var stepY = 3;	
+		
+		image.onload = animate();
+		
+		function animate()
+		{
+			draw();
+			update();
+			requestAnimationFrame(animate);
+		}
+		document.onclick = function(e){
+			if(przegrales == false){
+				iloscstrzalow--;
+				let shotgun = new Audio("audio/shotgun.mp3")
+				shotgun.play();
+				e = e || window.event;
+				var pX = 0;
+				var pY = 0;
+				if(e.pageX || e.pageY){
+					pX = e.pageX -7;
+					pY = e.pageY -7;
+				} else if (e.clientX || e.clientY){
+					pX = e.clientX + document.body.scrollLeft;
+					pY = e.clientY + document.body.scrollTop;
+				}
+				let roznicaX = imX+20 - pX;
+				let roznicaY = imY+20 - pY;
+				console.log(roznicaX)
+				console.log(roznicaY)
+				if(roznicaX <= 25  && roznicaX >= -25  &&  roznicaY <= 25 && roznicaY >= -25) {
+					rozwalKaczke();
+					stepX = 0;
+					stepY = 0;
+					iloscKaczek++;
+					iloscstrzalow+=2;
+					setTimeout(kaczkaPowraca,2000);
+				}
+
+			}
+        };	
+		function iloscRozwalonychKaczek(){
+			context.fillStyle = "red";
+			context.font = "30px Arial";
+			context.fillText("Ilość zabitych kaczek: ", 500, 50);
+			context.fillStyle = "black";
+			context.font = "35px Arial";
+			context.fillText(iloscKaczek,850, 50);
+		}
+		function iloscOddanychStrzalow(){
+			context.fillStyle = "red";
+			context.font = "30px Arial";
+			context.fillText("Ilość nabojów: ", 500, 80);
+			context.fillStyle = "black";
+			context.font = "35px Arial";
+			context.fillText(iloscstrzalow, 850, 80);
+			if(iloscstrzalow == 0 ){
+				przegrales = true;
+			}
+		}
+		function GameOver(){
+			context.fillStyle = "yellow";
+			context.font = "180px Arial";
+			context.fillText("Brak amunicji", 320, 500);
+			przegrales = true
+		}
+		function rozwalKaczke(){
+			if(kierunek == false){
+				image =kaczka3;
+			}
+			else if(kierunek == true){
+				image =kaczka4;
+			}
+		}
+		function losujstep(){
+			let kier = Math.floor(Math.random()*4)
+			if(kierunek == true){
+				return kier;	
+			}
+			else if(kierunek == false){
+				return -kier;
+			}
+		}
+		function jakSzybka(){
+			if(iloscKaczek < 10){
+				stepX = 5;
+				stepY = 5;
+			}
+			else if(iloscKaczek < 20){
+				stepX = 6;
+				stepY = 6;
+			}
+			else if(iloscKaczek < 30){
+				stepX = 7;
+				stepY = 7;
+			}
+			else if(iloscKaczek < 40){
+				stepX = 8;
+				stepY = 8;
+			}
+			else if(iloscKaczek < 50){
+				stepX = 9;
+				stepY = 9;
+			}
+			else if(iloscKaczek < 60){
+				stepX = 10;
+				stepY = 10;
+			}
+			else if(iloscKaczek < 70){
+				stepX = 11;
+				stepY = 11;
+			}
+			else if(iloscKaczek < 80){
+				stepX = 12;
+				stepY = 12;
+			}
+			else if(iloscKaczek < 90){
+				stepX = 13;
+				stepY = 13;
+			}
+		}
+		function rysuj1(xx,yy){
+			context.lineWidth =5;
+			context.beginPath()
+			context.moveTo(xx-10,yy-10);
+			context.lineTo(xx+10,yy+10);
+			context.moveTo(xx-10,yy+10);
+			context.lineTo(xx+10,yy-10);
+			context.stroke();
+			context.closePath()
+            }	
+		function update() {
+			if(przegrales == true){
+				GameOver();
+			}
+			// jeżeli obrazek dotknie krawędzi canwy, zmieniamy jego kierunek na przeciwny
+			// x jest liczony od lewej strony, dlatego dla prawej i dolnej krawędzi musimy odejmować wymiary obrazka - kaczka 150x120 
+			if (imX<0 || imX>width-100) {
+				stepX = -stepX;
+				if(kierunek == true){
+                    kierunek = false;
+                    obruc();
+                }
+                else if(kierunek == false){
+                    kierunek = true;
+                    obruc();
+
+                }
+                obruc();
+			}
+			if (imY<0 || imY>height-64) {
+				stepY = -stepY;
+			}        			
+			//do x i y obrazka dodajemy przesuniecie
+			imX += stepX+losujstep();
+			imY += stepY
+
+			if(image == kaczka){
+				step += 0.15;	//0.4;
+				if (step >= 4)
+					step -=4;
+			}
+			if(image == kaczka2){
+				step += 0.15;	//0.4;
+				if (step >= 4)
+					step -=4;
+			}
+			if(image == kaczka3){
+				step += 0.45;	
+			}
+			if(image == kaczka4){
+				step += 0.45;	
+			}
+
+		}
+			
+		function draw() {
+			context.fillStyle ="#BDEEF2"
+			context.fillRect(0,0,width,height);
+			iloscRozwalonychKaczek();
+			iloscOddanychStrzalow();
+			drawShell(imX,imY,Math.floor(step));
+		}
+		function drawShell(x, y, nr)
+		{
+			context.drawImage(image, 64*nr, 0, 64, 64, x, y, 64, 64);
+
+		}
+     </script>
+     </body>
+</html>

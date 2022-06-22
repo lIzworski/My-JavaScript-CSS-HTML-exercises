@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>bomba</title>
+
+	<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script src="bomba.js"></script>
+
+</head>
+<body>
+
+	<div id="pojemnik">
+		<div id="plansza"></div>
+		<div class="flex-container">
+			<div class="flex-item-left">
+				<div id="kasa">
+					<label style="font-size: 18px; margin-left: 40px;"> Wartość każdego trafionego pola: </label>
+					<label id="WylosowanaWartosc" style="font-size: 18px;color: azure; background-color: rgb(116, 114, 111); border: 3px; border-style:inherit;border-color: brown; padding: 5px; "></label>
+				</div>
+			</div>
+			<div class="flex-item-right">
+				<div id="StanKonta">
+					<label style="font-size: 18px;"> StanKonta: </label>
+					<label id="stanKonta" style="font-size: 18px;color: azure; background-color: rgb(116, 114, 111); border: 3px; border-style:inherit;border-color: brown; padding: 5px; "></label>
+				</div>
+			</div>
+		  </div>
+		  <div class="flex-container">
+			  <div class="flex-item left">
+				<div id="bomba">
+					<img src="img/Bomba0.jpg" alt="" />
+				</div>
+			</div>
+			<div class="flex-item-right">
+				<div id="alfabet"></div>
+				<div style="clear:both;"></div>
+				<label id="ileHajsu" style="font-size: 16px;  margin-left: 5px; background-color: rgb(186, 192, 197); padding-top:2px; padding-bottom: 2px; margin-bottom: 2px;">Brakuje ci współgłosek ? Kup Samogłoskę za 250 pkt.</label>
+				<div id="samogloski"></div>
+				<div style="clear:both;"></div>
+			</div>
+		  </div>
+	</div>
+	<div id="poleTekstowe">
+		<label for="javascript" style="font-size:18px">Podaj rozwiązanie: </label>
+		<input type="text" id="Odpowiedz"> 
+		<input type="button" onclick="wyslijOdpowiedz()" value="Wyślij jeśli jesteś pewny podanego hasla." id="sendAnswer"><br>
+		<label style="font-size: 12px; color: rgb(160, 166, 172); margin: 3px;"> <br>Zasady: <br>1.Jeśli trafisz własciwą litere to na twoje konto trafi jej wartość razy jej liczebność w tekscie.</label>
+		<label style="font-size: 12px; color: rgb(160, 166, 172); margin: 3px;"> <br>2.Jeśli nie trafisz we własciwą litere, jej wartość pomnozona przez 2 zostanie odjęta od twojego konta.</label>
+	</div>
+
+</body>
+</html>

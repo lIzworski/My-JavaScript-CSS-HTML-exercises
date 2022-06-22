@@ -1,0 +1,130 @@
+body
+{
+	background-color: lightgray;
+	color: black;
+	font-size: 28px;
+	font-family: 'Inconsolata';
+	font-weight: 700;
+}
+*{
+	box-sizing: border-box;
+}
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+}
+.flex-item-left{
+	flex: 50%;
+}
+.flex-item-right{
+	flex: 50%;
+}
+
+@media (max-width: 900px){
+	.flex-item-right,.flex-item-left{
+		flex: 100%;
+	}
+}
+
+#pojemnik
+{
+	width:900px;
+	margin-left:auto;
+	margin-right:auto;
+}
+#kasa{
+	
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 30px;
+	
+}
+
+#sendAnswer:hover{
+	background-color: brown;
+	color: azure;
+}
+#poleTekstowe{
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 80px;
+}
+
+#plansza
+{
+	width: 900px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: 48px;
+	min-height: 60px;
+}
+
+#bomba
+{
+	float: left; 
+	width: 450px;
+	text-align: center;
+	min-height: 280px;
+}
+
+#alfabet
+{
+	float: left; 
+	width: 450px;
+	text-align: center;
+	min-height: 250px;
+}
+
+.litera
+{
+	width: 50px;
+	height: 50px;
+	text-align:center;
+	padding: 5px;
+	margin: 5px;
+	border: 3px solid gray;
+	float: left;
+	cursor: pointer;
+	
+}
+
+.litera:hover
+{
+	background-color: #FFFF99 ;
+	color: black;
+	border: 3px solid white;
+}
+
+.literas
+{
+	width: 50px;
+	height: 50px;
+	text-align:center;
+	padding: 5px;
+	margin: 5px;
+	border: 3px solid rgb(119, 101, 101);
+	float: left;
+	cursor: pointer;
+	
+}
+
+.literas:hover
+{
+	background-color: #dab30a ;
+	color: rgb(96, 0, 121);
+	border: 3px solid rgb(202, 181, 134);
+}
+
+.reset
+{
+	color:red;
+	cursor: pointer;
+	font-size: 50px;
+}
+
+.reset:hover
+{
+	color:white;
+}

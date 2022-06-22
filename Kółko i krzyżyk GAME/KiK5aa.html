@@ -1,0 +1,428 @@
+Rysunki na Canvie
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+<style>
+html, body{
+padding:0;
+margin:0;
+}
+
+body{
+background-color:rgb(173, 218, 223);
+font-family: 'Times New Roman', Times, serif;
+}
+
+.content {
+padding:25px 25px 0 25px;
+margin-left:730px;
+}
+
+h1 {
+text-transform:uppercase;
+font-weight:400;
+letter-spacing:2px;
+}
+
+h1 span{
+display:block;
+font-size:120%;
+}
+.opis{
+width:400px;
+}
+.opis1{
+width:400px;
+color:red;
+}
+.opis2{
+width:400px;
+color:blue;
+}
+
+
+.dwa {
+font-size:80%;
+}
+
+.kanwa-outer{
+background-color:rgb(238, 199, 199);
+width:700px;
+height:100vh;
+float:left;
+overflow:hidden;
+border-right:30px solid rgb(122, 93, 160);
+}
+#kanwa{
+cursor:crosshair;
+}
+
+.przyciski{
+margin:10px 0;
+float:left;
+}
+przyciski:after, .content:after{
+content:"";
+clear:both;
+display:block;
+}
+.przyciski button{
+width:200px;
+display:block;
+text-align:center;
+text-transform:uppercase;
+font-size:50%;
+letter-spacing:1px;
+font-weight:700;
+padding:10px;
+margin:2px;
+float:left;
+}
+
+</style>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="kanwa-outer">
+<canvas id="kanwa" width="700" height="800" ></canvas>
+</div>
+
+<FORM>
+<TEXTAREA NAME=TextA0 ID="txt0">
+</TEXTAREA>
+<BR>
+<TEXTAREA NAME=TextA1 ID="txt">
+</TEXTAREA>
+<BR>
+<TEXTAREA NAME=TextA3 ID="txt3" ROWS=12, COLS=20>
+</TEXTAREA>
+<BR>
+<TEXTAREA NAME=TextA2 ID="txt2" ROWS=12, COLS=20>
+</TEXTAREA>
+
+</FORM>
+
+<div class="content">
+<h1> Gra: Kółko i krzyżyk</h1>
+<div class='opis1'>
+<h1> <span id="gracz1">Ruch: Krzyżyk</span></h1>
+</div>
+<div class='opis2'>
+<h1> <span id="gracz2"></span></h1>
+</div>
+
+
+<div class="przyciski">
+
+</div>
+
+<div class='opis dwa'>
+<h3>OPIS PROJEKTU</h3>
+<ul>
+Dorobić:
+<Li> Rysowanie tylko na planszy (sprawdzenie wsp�rz�dnych)
+<Li> Dodanie znaku tylko gdy pole jest puste (przechowywanie znak�w w tablicy, sprawdzenie przy wstawianiu)
+<Li> Sprawdzanie wygranej  (poziomo, pionowo, po dw�ch przek�tnych; poczynaj�c od wstawionego znaku liczenie sumy w obydwie strony) 
+
+</ul>
+</div>
+</div>
+
+<script type="text/javascript" charste="utf-8">
+var elem1 = document.getElementById('gracz1');
+var elem2 = document.getElementById('gracz2');
+let PP=[-1,-1]; //indeksy bie��cego znaku
+
+let tablica = new Array(10);
+for(let i=0; i<10; i++){
+	tablica[i]=new Array('_','_','_','_','_','_','_','_','_','_');
+	}
+	
+let wynik = 0;
+win = true;
+let P1=[-1,-1]; 	//pocz�tek linii wygranej
+let P2=[-1,-1];		//koniec linii wygranej
+var c = document.getElementById('kanwa').getContext('2d');
+
+window.onload = function(){
+	var dzwiek1 = new Audio('background.mp3');
+	var funkRysuj = 1;
+
+	document.onclick = function(e) {
+		let xx,yy;
+		if(win == true){
+			if(e.pageX < 440)
+				{
+				xx = Math.floor(e.pageX/40)*40+20;
+				yy = Math.floor(e.pageY/40)*40+20;
+				if(isEmptyPoz(xx,yy)==true){
+					txt.value = xx+"; "+yy;
+					Zapisz1(xx,yy,funkRysuj);
+				}
+				}
+			switch(funkRysuj){
+				case 1:{	
+					elem1.innerHTML = "Ruch: K�ko";
+					elem2.innerHTML = "";
+					funkRysuj=2;	
+					console.log(funkRysuj);
+					break;
+				}
+				case 2:{
+					elem1.innerHTML = "";
+					elem2.innerHTML = "Ruch: Krzy�yk";
+					funkRysuj=1;	
+					console.log(funkRysuj);
+					break;
+				}
+			txt3.value = "funkRysuj "+funkRysuj;
+		}
+		} //switch
+		
+	} //onclick
+	
+	function rysujPlansze(){
+		c.strokeStyle = "rgb(50,50,50)";
+		c.lineWidth = 3;
+		for(let i=1; i<=11; i++)
+			{
+			c.beginPath();
+			c.moveTo(40,i*40);
+			c.lineTo(440,i*40);
+			c.stroke();
+			c.closePath();
+			}
+		for(let i=1; i<=11; i++)
+			{
+			c.beginPath();
+			c.moveTo(i*40,40);
+			c.lineTo(i*40,440);
+			c.stroke();
+			c.closePath();
+			}
+	} //rysujPlansze
+rysujPlansze();
+Wypisz1();
+} //onload
+function liniaWin(p1,p2){
+	c.lineWidth = 7;
+	c.strokeStyle = 'black';
+	c.beginPath();
+	c.moveTo((p1[0]*40)+20,(p1[1]*40)+20);
+	c.lineTo((p2[0]*40)+20,(p2[1]*40)+20);
+	c.stroke();
+	c.closePath();
+}
+function rysujX(xx,yy){
+	if(win==true){
+		var dzwiek = new Audio('blop.mp3');
+		dzwiek.play();
+		c.strokeStyle = "rgb(0,0,255)";
+		c.lineWidth = 10;
+		c.beginPath();
+		c.moveTo(xx+15,yy+15);
+		c.lineTo(xx-15,yy-15);
+		c.moveTo(xx+15,yy-15);
+		c.lineTo(xx-15,yy+15);
+		c.stroke();
+		c.closePath();
+	}
+} //rysujX
+
+function rysujO(xx,yy){
+	if(win == true){
+		var dzwiek = new Audio('blop.mp3');
+		dzwiek.play();
+		c.strokeStyle = "rgb(255,0,0)";
+		c.lineWidth = 10;
+		c.beginPath();
+		c.arc(xx, yy, 12, 0, Math.PI*2);
+		c.stroke();
+		c.closePath();
+	}
+} //rysujO
+
+function Wypisz1(){
+	if(win == true){
+		for(let i=0; i<10;i++){
+			for(let j=0; j<10;j++){
+				txt2.value = txt2.value +" "+ tablica[i][j];
+			}
+			txt2.value=txt2.value+ "\n";
+		}
+	}
+}
+
+function Zapisz1(xx, yy, znak1){
+	if(win==true){
+
+		txt.value = txt.value + xx + "  "+ yy+ "  "+ znak1;
+		let wygrana=0;
+		let indX=-1;
+		let indY=-1;
+		if (xx >40) 
+			if (xx<80) indX=0;
+				else if (xx<120) indX=1;
+					else if (xx<160) indX=2;
+						else if (xx<200) indX=3;
+							else if (xx<240) indX=4;
+								else if (xx<280) indX=5;
+									else if (xx<320) indX=6;
+										else if (xx<360) indX=7;
+											else if (xx<400) indX=8;
+												else if (xx<440) indX=9;
+												else indX=-1;
+		if (yy >40) 
+			if (yy<80) indY=0;
+				else if (yy<120) indY=1;
+					else if (yy<160) indY=2;
+						else if (yy<200) indY=3;
+							else if (yy<240) indY=4;
+								else if (yy<280) indY=5;
+									else if (yy<320) indY=6;
+										else if (yy<360) indY=7;
+											else if (yy<400) indY=8;
+												else if (yy<440) indY=9;
+												else indY=-1;
+		txt3.value = "BBB";
+		txt3.value = tablica[indY][indX];
+		if((indX>=0) && (indY >=0))
+			if(tablica[indY][indX] == '_')
+			{
+				tablica[indY][indX] = znak1;
+				PP[0]=indY;
+				PP[1]=indX;
+				if(znak1==1){
+					rysujX(xx,yy);
+					if(sprawdzWygrana( znak1)){
+						txt0.value="WYGRANA X !!! ";
+						win = false;
+					}				
+				}
+				if(znak1==2){
+					rysujO(xx,yy);
+					if(sprawdzWygrana( znak1)){
+						txt0.value="WYGRANA O !!! ";
+						win = false;
+					}
+				}
+			}
+		txt.value = indX+ " "+ indY;
+		txt2.value="";
+		Wypisz1();
+	}
+}
+function isEmptyPoz(xx,yy){
+let indX=-1;
+let indY=-1;
+if (xx >40) 
+if (xx<80) indX=0;
+else if (xx<120) indX=1;
+else if (xx<160) indX=2;
+else if (xx<200) indX=3;
+else if (xx<240) indX=4;
+else if (xx<280) indX=5;
+else if (xx<320) indX=6;
+else if (xx<360) indX=7;
+else if (xx<400) indX=8;
+else if (xx<440) indX=9;
+else indX=-1;
+if (yy >40) 
+if (yy<80) indY=0;
+else if (yy<120) indY=1;
+else if (yy<160) indY=2;
+else if (yy<200) indY=3;
+else if (yy<240) indY=4;
+else if (yy<280) indY=5;
+else if (yy<320) indY=6;
+else if (yy<360) indY=7;
+else if (yy<400) indY=8;
+else if (yy<440) indY=9;
+else indY=-1;
+if(tablica[indY][indX]=='_') return true;
+	else return false;
+									
+}
+ 	
+function sprawdzWygrana(znak)
+{
+	for(let i = 0; i < 10; i++){
+		for(let j = 0;j < 10;j++){
+			if(tablica[i][j] == znak){
+				let punkty = 1;
+				for(let right = 1; right <= 4; right++){
+					if(j + right >= 10)
+					{
+						break;
+					}
+					if(tablica[i][j+right]!= znak)
+					{
+						break;
+					}
+					if(tablica[i][j+right] == znak){
+						punkty++;
+						if(punkty == 5){
+							P1 = [j+1,i+1];
+							P2 = [(j+1+right),i+1];
+							liniaWin(P1,P2);
+						}
+					}
+				}
+				if(punkty == 5){
+					return punkty;
+				}
+				punkty = 1;
+				for(let vertical = 1; vertical <=4;vertical++){
+					if(i+vertical>= 10)
+					{
+						break;
+					}
+					if(tablica[i+vertical][j]!= znak)
+					{
+						break;
+					}
+					if(tablica[i+vertical][j]== znak){
+						punkty++;
+						if(punkty == 5){
+							P1 = [j+1,i+1];
+							P2 = [j+1,i+1+vertical];
+							liniaWin(P1,P2);
+						}
+					}
+				}
+				if(punkty == 5){
+					return punkty;
+				}
+				punkty = 1;
+				for(let nawskos = 1; nawskos<=10; nawskos++){
+					if(i+nawskos>= 10)
+					{
+						break;
+					}
+					if(tablica[i+nawskos][j+nawskos]!= znak)
+					{
+						break;
+					}
+					if(tablica[i+nawskos][j+nawskos]== znak){
+						punkty++;
+						if(punkty == 5){
+							P1 = [j+1,i+1];
+							P2 = [j+1+nawskos,i+1+nawskos];
+							liniaWin(P1,P2);
+						}
+					}
+				}
+				if(punkty == 5){
+					return punkty;
+				}
+			}
+		}
+	}
+} //sprawdzWygrana
+
+</script>
+</body>
+</html>
